@@ -78,6 +78,8 @@ library(fontawesome) # Easily Work with 'Font Awesome' Icons Posit RPSM v0.5.2
 
 ## Quarto
 
+<https://quarto.org/>{target="_blank"}
+
 ```{=html}
 <iframe width="1000" height="550" src="https://quarto.org/" title="Quarto Homepage" ></iframe>
 ```
@@ -116,17 +118,17 @@ Dashboards are composed of **cards** of text, plot and tables in **pages** that 
 
 ## Motivation
 
-Wanted to see if Quarto Dashboard can create something similar to the [Fertility Dashboard](https://www.singstat.gov.sg/find-data/search-by-theme/population/births-and-fertility/visualising-data/fertility-dashboard){target="_blank"} from Department of Statistics Singapore.
+[CNA](https://www.channelnewsasia.com/singapore/singapore-total-fertility-rate-population-parents-children-4155616){target="_blank"} reported that Singapore's total fertility rate was below 1 for the first time.
 
-![](images/fertility_dashbaord_DOS.png){fig-alt="Fertility Dashboard from Department of Statistics Singapore." fig-align="center"}
+![](images/cna_fertility.png){fig-alt="Channel News Asia news headline: Singapore's total fertility rate falls to historic low of 0.97" fig-align="center" width="60%"}
 
-## Data
+## Motivation
 
 Data is downloaded from [Department Of Statistics Singapore](https://www.singstat.gov.sg/find-data/search-by-theme/population/births-and-fertility/latest-data){target="_blank"}
 
 ![](images/website_to_get_data.png){fig-alt="Births and Fertility data from the Department Of Statistics Singapore website" fig-align="center"}
 
-## Data
+## Motivation
 
 Alternatively, it can be downloaded from <https://data.gov.sg/>{target="_blank"}
 
@@ -150,7 +152,7 @@ Alternatively, it can be downloaded from <https://data.gov.sg/>{target="_blank"}
 
 :::
 
-## Data
+## Motivation
 
 A preview of the dataset.
 
@@ -163,7 +165,10 @@ A preview of the dataset.
 #| echo: true
 
 birth_data <- readxl::read_excel(
-  path = here::here("data", "Live-Births By Sex And Ethnic Group, Monthly.xlsx")
+  path = here::here(
+    "data", 
+    "Live-Births By Sex And Ethnic Group, Monthly.xlsx"
+  )
 )
 
 ```
@@ -190,7 +195,7 @@ if (params$show_table && knitr::is_html_output()) {
           style = sticky_style, 
           headerStyle = sticky_style)
       ), 
-      filterable = TRUE,
+      filterable = FALSE,
       defaultPageSize = 8,
       paginationType = "jump",
       style = list(fontSize = "1rem"),
@@ -210,7 +215,10 @@ if (params$show_table && knitr::is_html_output()) {
 #| echo: true
 
 fertility_rate_data <- readxl::read_excel(
-  path = here::here("data", "Fertility Rate By Ethnic Group, Yearly.xlsx")
+  path = here::here(
+    "data", 
+    "Fertility Rate By Ethnic Group, Yearly.xlsx"
+  )
 )
 
 ```
@@ -234,7 +242,7 @@ if (params$show_table && knitr::is_html_output()) {
           headerStyle = sticky_style
         )
       ), 
-      filterable = TRUE,
+      filterable = FALSE,
       defaultPageSize = 8,
       paginationType = "jump",
       style = list(fontSize = "1rem"),
@@ -248,6 +256,12 @@ if (params$show_table && knitr::is_html_output()) {
 :::
 
 ::::
+
+## Motivation
+
+Can Quarto Dashboard create something similar to the [Fertility Dashboard](https://www.singstat.gov.sg/find-data/search-by-theme/population/births-and-fertility/visualising-data/fertility-dashboard){target="_blank"} from Department of Statistics Singapore.
+
+![](images/fertility_dashbaord_DOS.png){fig-alt="Fertility Dashboard from Department of Statistics Singapore." fig-align="center"}
 
 ## Open A Quarto Document
 
