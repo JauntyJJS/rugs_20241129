@@ -1,0 +1,1705 @@
+---
+title: Introduction to Quarto Dashboards 📊📈🎛️📶
+author: Jeremy Selva [`r fontawesome::fa(name = "linkedin", fill = "#273B8C")`](https://www.linkedin.com/in/jeremy-selva-085b9112a/){target="_blank"} <br> @JauntyJJS [`r fontawesome::fa(name = "github", fill = "#273B8C")`](https://github.com/JauntyJJS){target="_blank"} [`r fontawesome::fa(name = "fab fa-x-twitter", fill = "#273B8C")`](https://twitter.com/JauntyJJS){target="_blank"} <br> [*https://jeremy-selva.netlify.app* `r fontawesome::fa(name = "link", fill = "#273B8C")`](https://jeremy-selva.netlify.app/){target="_blank"} <br> For RUGS Meetup Nov 2024 `r fontawesome::fa(name = "r-project", fill = "#273B8C")`
+date: 2024-11-29
+date-format: "D[<sup style='font-size:65%;font-style:italic;'>th</sup>] MMMM YYYY"
+format:
+  revealjs:
+    theme: [custom.scss]
+    mainfont: "Lora"
+    code-line-numbers: true
+    code-annotations: false
+    code-overflow: scroll
+    controls: true
+    progress: true
+    slide-number: true
+    scrollable: true
+    transition: fade
+    background-transition: fade
+    highlight-style: breeze
+    #logo: images/qr.png
+    pointer:
+      pointerSize: 24
+      color: '#32cd32'
+revealjs-plugins:
+  - pointer
+filters:
+  - code-fullscreen
+params:
+  show_table: TRUE
+---
+
+```{r}
+#| label: for presentation
+#| include: false
+
+library(fontawesome)
+library(verbaliseR)
+
+library(knitr)
+library(yaml)
+library(rmarkdown)
+
+out_type <- knitr::opts_chunk$get("rmarkdown.pandoc.to")
+```
+
+```{r}
+#| label: for dashboard
+#| include: false
+#| echo: false
+
+library(here) # A Simpler Way to Find Your Files Posit RPSM v1.0.1
+library(readxl) # Read Excel Files Posit RPSM v1.4.3
+library(tibble) # Simple Data Frames Posit RPSM v3.2.1
+library(fs) # Cross-Platform File System Operations Based on 'libuv' Posit RPSM v1.6.5
+library(rmarkdown)  # Dynamic Documents for R Posit RPSM v2.28
+library(yaml) # Methods to Convert R Data to YAML and Back Posit RPSM v2.3.10
+library(quarto) # R Interface to 'Quarto' Markdown Publishing System Posit RPSM v1.4.4
+library(sessioninfo) # R Session Information Posit RPSM v1.2.2
+library(dplyr) # A Grammar of Data Manipulation Posit RPSM v1.1.4
+library(tidyr) # Tidy Messy Data Posit RPSM v1.3.1
+library(forcats) # Tools for Working with Categorical Variables (Factors) Posit RPSM v1.0.0
+library(glue) # Interpreted String Literals Posit RPSM v1.8.0
+library(plotly) # Create Interactive Web Graphics via 'plotly.js' Posit RPSM v4.10.4
+library(htmltools) # Tools for HTML Posit RPSM v0.5.8.1
+library(reactable) # Interactive Data Tables for R Posit RPSM v0.4.4
+library(crosstalk) # Inter-Widget Interactivity for HTML Widgets Posit RPSM v1.2.1
+library(fontawesome) # Easily Work with 'Font Awesome' Icons Posit RPSM v0.5.2
+
+```
+
+## Quarto
+
+[Quarto®](https://quarto.org/){target="_blank"} is an open-source software that weaves narrative and programming code together to produce elegantly formatted output as documents (in HTML, Word, PDF), presentations, books, web pages, and more.
+
+![](images/allison_horst.png){fig-alt="Picture by Allison Horst about Quarto turning programming code to documents." fig-align="center"}
+[Artwork](https://allisonhorst.com/){target="_blank"} by [@allison_horst](https://x.com/allison_horst){target="_blank"}.
+
+
+## Quarto
+
+```{=html}
+<iframe width="1000" height="550" src="https://quarto.org/" title="Quarto Homepage" ></iframe>
+```
+
+## Quarto Dashboards (Released in Quarto 1.4)
+
+* A simple way to quickly creating dashboards from Quarto scripts using R, Python, Julia, and Observable
+
+* Publish groups of visualizations, tables, text together. See examples in <https://quarto.org/docs/gallery/index.html#dashboards>{target="_blank"}
+
+![](images/quarto_dashboard_example.png){fig-alt="A list of Quarto dashboard example." fig-align="center"}
+
+
+## Dashboard Basics
+
+Dashboards are composed of **cards** of text, plot and tables in **pages**
+
+![](images/cards_not_arranged.png){fig-alt="Cards (unaranged)." fig-align="center"}
+
+## Dashboard Basics 
+
+Dashboards are composed of **cards** of text, plot and tables in **pages** that need to be arranged neatly into rows and columns.
+
+::: panel-tabset
+
+### About
+
+![](images/cards_arranged_1.png){fig-alt="Cards arranged to tell what the project is about." fig-align="center"}
+
+### Total_Fertility
+
+![](images/cards_arranged_2.png){fig-alt="Cards arranged to show the results." fig-align="center"}
+
+
+:::
+
+## Motivation
+
+Wanted to see if Quarto Dashboard can create something similar to the [Fertility Dashboard](https://www.singstat.gov.sg/find-data/search-by-theme/population/births-and-fertility/visualising-data/fertility-dashboard){target="_blank"} from Department of Statistics Singapore.
+
+![](images/fertility_dashbaord_DOS.png){fig-alt="Fertility Dashboard from Department of Statistics Singapore." fig-align="center"}
+
+## Data
+
+Data is downloaded from [Department Of Statistics Singapore](https://www.singstat.gov.sg/find-data/search-by-theme/population/births-and-fertility/latest-data){target="_blank"}
+
+![](images/website_to_get_data.png){fig-alt="Births and Fertility data from the Department Of Statistics Singapore website" fig-align="center"}
+
+## Data
+
+Alternatively, it can be downloaded from <https://data.gov.sg/>{target="_blank"}
+
+::: panel-tabset
+
+### Fertility Rate
+
+<https://data.gov.sg/datasets/d_e39eeaeadb571c0d0725ef1eec48d166/view>{target="_blank"}
+
+```{=html}
+<iframe width="1000" height="400" src="https://data.gov.sg/datasets/d_e39eeaeadb571c0d0725ef1eec48d166/view" title="Fertility Rate" ></iframe>
+```
+
+### Live Birth
+
+<https://data.gov.sg/datasets/d_d05c760928eb5eaa58006d83462b834e/view>{target="_blank"}
+
+```{=html}
+<iframe width="1000" height="400" src="https://data.gov.sg/datasets/d_d05c760928eb5eaa58006d83462b834e/view" title="Live Birth" ></iframe>
+```
+
+:::
+
+## Data
+
+A preview of the dataset.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| label: read birth data
+#| echo: true
+
+birth_data <- readxl::read_excel(
+  path = here::here("data", "Live-Births By Sex And Ethnic Group, Monthly.xlsx")
+)
+
+```
+
+::: {.content-visible when-format="html"}
+
+```{r}
+#| label: birth data html
+
+if (params$show_table && knitr::is_html_output()) {
+  
+  sticky_style <- list(backgroundColor = "#f7f7f7")
+  
+  birth_data |>
+    reactable::reactable(
+      columns = list(
+        Ethnicity = reactable::colDef(
+          sticky = "left",
+          style = sticky_style, 
+          headerStyle = sticky_style
+        ), 
+        Gender = reactable::colDef(
+          sticky = "left",
+          style = sticky_style, 
+          headerStyle = sticky_style)
+      ), 
+      filterable = TRUE,
+      defaultPageSize = 8,
+      paginationType = "jump",
+      style = list(fontSize = "1rem"),
+    )
+}
+
+```
+
+:::
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| label: read fertility data
+#| echo: true
+
+fertility_rate_data <- readxl::read_excel(
+  path = here::here("data", "Fertility Rate By Ethnic Group, Yearly.xlsx")
+)
+
+```
+
+::: {.content-visible when-format="html"}
+
+```{r}
+#| label: fertility data html
+
+if (params$show_table && knitr::is_html_output()) {
+  
+  sticky_style <- list(backgroundColor = "#f7f7f7")
+  
+  fertility_rate_data |>
+    reactable::reactable(
+      columns = list(
+        Ethnicity = reactable::colDef(
+          minWidth = 200,
+          sticky = "left",
+          style = sticky_style, 
+          headerStyle = sticky_style
+        )
+      ), 
+      filterable = TRUE,
+      defaultPageSize = 8,
+      paginationType = "jump",
+      style = list(fontSize = "1rem"),
+    )
+}
+
+```
+
+:::
+
+:::
+
+::::
+
+## Open A Quarto Document
+
+Create a Quarto document
+
+![](images/create_a_quarto_doc_grouped.png){fig-alt="Steps to create a Quarto document" fig-align="center"}
+
+## Open A Quarto Document
+
+Clear everything in file and type the following `yaml` header (surrounded by `---`) and click "Render"
+
+````{.yaml filename="index.qmd"}
+---
+title: "SG Fertility Dashboard"
+format: 
+  dashboard:
+    scrolling: true
+    nav-buttons: [github]
+    github: https://github.com/JauntyJJS/fertility_dashboard
+---
+````
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](images/quarto_render.png){fig-alt="Steps to render a Quarto document to an empty dashboard" fig-align="center"}
+
+:::
+
+::: {.column width="50%"}
+
+![](images/starting_dashboard.png){fig-alt="Output from the above command" fig-align="center"}
+
+:::
+
+::::
+
+## Code Chunks
+
+R codes are to be placed in between the ```` ```{r} ```` and ```` ``` ```` code chunks.
+
+::: panel-tabset
+
+### R code 
+
+```{r}
+#| label: load packages
+#| message: false
+#| eval: false
+#| echo: true
+
+library(here) # A Simpler Way to Find Your Files Posit RPSM v1.0.1
+library(readxl) # Read Excel Files Posit RPSM v1.4.3
+library(tibble) # Simple Data Frames Posit RPSM v3.2.1
+library(fs) # Cross-Platform File System Operations Based on 'libuv' Posit RPSM v1.6.5
+library(rmarkdown)  # Dynamic Documents for R Posit RPSM v2.28
+library(yaml) # Methods to Convert R Data to YAML and Back Posit RPSM v2.3.10
+library(quarto) # R Interface to 'Quarto' Markdown Publishing System Posit RPSM v1.4.4
+library(sessioninfo) # R Session Information Posit RPSM v1.2.2
+library(dplyr) # A Grammar of Data Manipulation Posit RPSM v1.1.4
+library(tidyr) # Tidy Messy Data Posit RPSM v1.3.1
+library(forcats) # Tools for Working with Categorical Variables (Factors) Posit RPSM v1.0.0
+library(glue) # Interpreted String Literals Posit RPSM v1.8.0
+library(plotly) # Create Interactive Web Graphics via 'plotly.js' Posit RPSM v4.10.4
+library(htmltools) # Tools for HTML Posit RPSM v0.5.8.1
+library(reactable) # Interactive Data Tables for R Posit RPSM v0.4.4
+library(crosstalk) # Inter-Widget Interactivity for HTML Widgets Posit RPSM v1.2.1
+library(fontawesome) # Easily Work with 'Font Awesome' Icons Posit RPSM v0.5.2
+
+```
+
+### In code chunk {.nostretch}
+
+![](images/r_packages_used.png){fig-alt="How to load all libraries in a Quarto Code Chunk" fig-align="center" width="60%"}
+
+:::
+
+## Pages
+
+The text of the level 1 headings `#{Page Title}` helps to create pages in the navigation bar.
+
+```{.yaml filename="index.qmd"}
+---
+title: "SG Fertility Dashboard"
+format: 
+  dashboard:
+    scrolling: true
+    nav-buttons: [github]
+    github: https://github.com/JauntyJJS/fertility_dashboard
+---
+
+# Fertility Rate {orientation="rows" scrolling="true"}
+
+# Live Birth {orientation="rows" scrolling="true"}
+
+# About {orientation="columns" scrolling="true"}
+```
+
+![](images/dashboard_with_pages.png){fig-alt="dashboard with pages but no content" fig-align="center"}
+
+## Layout for About
+
+The `orientation="columns"` settings ensures cards are first laid out by columns and then by rows. Column space can be allocated using level 2 headings `## Column`
+
+```{r filename="index.qmd"}
+#| echo: true
+
+# About {orientation="columns" scrolling="true"}
+
+## Column {width="60%"}
+
+## Column {width="40%"}
+```
+
+![](images/column_layout.png){fig-alt="column orientation layout" fig-align="center"}
+
+## Cards for About
+
+To create cards that has text or markdown, it is better to use the `::: {.card title="Your title"}` block.
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+````{.r filename="index.qmd"}
+# About {orientation="columns" scrolling="true"}
+
+## Column - About the Dashboard {width="60%"}
+
+::: {.card title="📊 About The Dashboard"}
+
+Your markdown text here
+
+:::
+
+## Column - R Session and Packages Used {width="40%"}
+````
+:::
+
+::: {.column width="60%"}
+
+![](images/card_about_the_dashboard_example.png){fig-alt="About page with a card titled: About The Dashboard with text example" fig-align="center"}
+:::
+
+::::
+
+## Cards for About
+
+::: panel-tabset
+
+### Code
+
+To create cards that uses R codes, use ```` ```{r} ```` code chunks.
+
+````{.r filename="index.qmd" code-line-numbers="|11-27"}
+# About {orientation="columns" scrolling="true"}
+
+## Column - About the Dashboard {width="60%"}
+
+::: {.card title="📊 About The Dashboard"}
+
+Your markdown text here
+
+:::
+
+## Column - R Session and Packages Used {width="40%"}
+
+```{{r}}
+#| label: R Package Used
+#| title: "R Packages Used"
+
+head(sessioninfo::package_info())
+
+```
+
+```{{r}}
+#| label: R Session Info
+#| title: "R Session Info"
+
+head(sessioninfo::platform_info())
+
+```
+````
+
+### Output
+
+![](images/card_about_r_platform_example.png){fig-alt="About page with a card titled: " fig-align="center"}
+:::
+
+## Cards for About
+
+::: panel-tabset
+
+### Code
+
+Here are the contents to create the About the dashboard chunks.
+
+````{.r filename="index.qmd"}
+# About {orientation="columns" scrolling="true"}
+
+## Column - About the Dashboard {width="60%"}
+
+::: {.card title="📊 About The Dashboard"}
+
+This dashboard is built with [Quarto Dashboards](https://quarto.org/docs/dashboards/){target="_blank"}. It is based on the [Fertility Dashboard](https://www.singstat.gov.sg/find-data/search-by-theme/population/births-and-fertility/visualising-data/fertility-dashboard){target="_blank"} from [Department of Statistics Singapore](https://www.singstat.gov.sg/){target="_blank"}.
+
+If you want to conduct your own analysis, see the following resources:
+
++-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Resource                            | Link                                                                                                                                                                         |
++=====================================+==============================================================================================================================================================================+
+| Births and Fertility Data           | [<i class='bi bi-globe'></i> Website](https://www.singstat.gov.sg/find-data/search-by-theme/population/births-and-fertility/latest-data){target="_blank"}                    |
+| Department of Statistics Singapore  |                                                                                                                                                                              |
++-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Fertility Rate By Ethnic Group,     | [<i class='bi bi-globe'></i> Website](https://data.gov.sg/datasets/d_e39eeaeadb571c0d0725ef1eec48d166/view){target="_blank"}                                                 |
+| Yearly from                         |                                                                                                                                                                              |
+| [data.gov.sg](https://data.gov.sg/) |                                                                                                                                                                              |
++-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Live-Births By Sex And Ethnic       | [<i class='bi bi-globe'></i> Website](https://data.gov.sg/datasets/d_d05c760928eb5eaa58006d83462b834e/view){target="_blank"}                                                 |
+| Group, Monthly from                 |                                                                                                                                                                              |
+| [data.gov.sg](https://data.gov.sg/) |                                                                                                                                                                              |
++-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Fertility Rate By Ethnic Group,     | [<i class="bi bi-file-earmark-spreadsheet"></i> Fertility Rate By Ethnic Group, Yearly.xlsx](data/Fertility Rate By Ethnic Group, Yearly.xlsx){target="_blank"}              |
+| Yearly till 2023 in Excel           |                                                                                                                                                                              |
++-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Live-Births By Sex And Ethnic       | [<i class="bi bi-file-earmark-spreadsheet"></i> Live-Births By Sex And Ethnic Group, Monthly.xlsx](data/Live-Births By Sex And Ethnic Group, Monthly.xlsx){target="_blank"}  |
+| Group, Monthly till Dec 2023        |                                                                                                                                                                              |
+| in Excel                            |                                                                                                                                                                              |
++-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Quarto script to create Dashboard   | [<i class="bi bi-file-code"></i> Quarto Script](index.qmd){target="_blank"}                                                                                                  |
++-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Github repository                   | [<i class='bi bi-github'></i> Source code](https://github.com/JauntyJJS/fertility_dashboard){target="_blank"}                                                                |
++-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Quarto Resources from               | [<i class='bi bi-github'></i> Resources](https://github.com/ivelasq/2024-07-18_quarto-dashboards){target="_blank"}                                                           |
+| Isabella Velásquez                  |                                                                                                                                                                              |
++-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Quarto Tutorials from               | [<i class='bi bi-youtube'></i> 1: Hello, Dashboards!](https://www.youtube.com/watch?v=HW7QbqI4fH0){target="_blank"}<br>                                                      |
+| Mine Çetinkaya-Rundel               | [<i class='bi bi-youtube'></i> 2: Components](https://www.youtube.com/watch?v=KdsQgwaY950){target="_blank"}<br>                                                              |
+|                                     | [<i class='bi bi-youtube'></i> 3: Theming and Styling](https://www.youtube.com/watch?v=NigWSB-jG4Y){target="_blank"}                                                         |
++-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Births And Fertility Rates, Annual and Live-Births By Sex And Ethnic Group data were accessed on 25 November 2024 from <https://data.gov.sg/>. Data is made available under the terms of [Singapore Open Data Licence version 1.0](https://data.gov.sg/open-data-licence)
+
+Made by Jeremy Selva [`r fontawesome::fa(name = "linkedin", fill = "#273B8C")`](https://www.linkedin.com/in/jeremy-selva-085b9112a/){target="_blank"} <br> @JauntyJJS [`r fontawesome::fa(name = "github", fill = "#273B8C")`](https://github.com/JauntyJJS){target="_blank"} [`r fontawesome::fa(name = "fab fa-x-twitter", fill = "#273B8C")`](https://twitter.com/JauntyJJS){target="_blank"} <br> [*https://jeremy-selva.netlify.app* `r fontawesome::fa(name = "link", fill = "#273B8C")`](https://jeremy-selva.netlify.app/){target="_blank"}
+
+:::
+
+## Column - R Session and Packages Used {width="40%"}
+
+```{{r}}
+#| label: R Package Used
+#| title: "📦 R Packages Used"
+
+get_r_package_info <- function() {
+
+  r_package_table <- sessioninfo::package_info()
+  rownames(r_package_table) <- NULL
+
+  r_package_table <- r_package_table |>
+    tibble::as_tibble() |>
+    dplyr::mutate(
+      version = ifelse(is.na(r_package_table$loadedversion),
+                       r_package_table$ondiskversion,
+                       r_package_table$loadedversion)) |>
+    dplyr::filter(.data[["attached"]] == TRUE) |>
+    dplyr::select(
+      dplyr::any_of(c("package", "version",
+                      "date", "source"))
+    )
+
+  return(r_package_table)
+
+}
+
+get_r_package_info() |>
+  reactable::reactable(
+    defaultPageSize = 5,
+    paginationType = "jump",
+  )
+
+```
+
+```{{r}}
+#| label: R Session Info
+#| title: "💻 R Session Info"
+
+get_quarto_version <- function(
+    test_sys_path = FALSE,
+    test_no_path = FALSE
+) {
+
+  # Taken from https://github.com/r-lib/sessioninfo/issues/75
+  if (isNamespaceLoaded("quarto") && isFALSE(test_sys_path)) {
+    path <- quarto::quarto_path() |>
+      fs::path_real()
+    ver <- system("quarto -V", intern = TRUE)
+    if (is.null(path) || isTRUE(test_no_path)) {
+      "NA (via quarto)"
+    } else {
+      paste0(ver, " @ ", path, "/ (via quarto)")
+    }
+  } else {
+    path <- Sys.which("quarto") |>
+      fs::path_real()
+    if (path == "" || isTRUE(test_no_path)) {
+      "NA"
+    } else {
+      ver <- system("quarto -V", intern = TRUE)
+      paste0(ver, " @ ", path)
+    }
+  }
+}
+
+
+get_knitr_version <- function() {
+
+  knitr_info <- "NA"
+
+  r_package_table <- sessioninfo::package_info(
+    pkgs = c("installed")
+  ) |>
+    dplyr::filter(.data[["package"]] == "knitr")
+
+  if (nrow(r_package_table) == 1) {
+
+    knitr_version <- r_package_table$loadedversion[1]
+    knitr_source <- r_package_table$source[1]
+
+    knitr_info <- paste0(
+      knitr_version, " from ",
+      knitr_source)
+  }
+
+  return(knitr_info)
+
+}
+
+get_r_platform_info <- function() {
+
+  r_platform_table <- sessioninfo::platform_info()
+  r_platform_table[["quarto"]] <- get_quarto_version()[1]
+  r_platform_table[["knitr"]] <- get_knitr_version()[1]
+
+  r_platform_table <- data.frame(
+    setting = names(r_platform_table),
+    value = unlist(r_platform_table,
+                   use.names = FALSE),
+    stringsAsFactors = FALSE
+  )
+
+  return(r_platform_table)
+}
+
+r_platform_table <- get_r_platform_info()
+
+r_platform_table |>
+  reactable::reactable(
+    defaultPageSize = 5,
+    paginationType = "jump",
+  )
+
+
+```
+````
+
+### Output
+
+![](images/card_about_the_dashboard_done.png){fig-alt="About page with a card titled: About The Dashboard with text completed" fig-align="center"}
+
+:::
+
+## Layout and Cards for Fertility Rate
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+The `orientation="rows"` settings ensures cards are first laid out by rows and then by columns.
+
+Indicating `#| content: valuebox` in the R code chunk will give out a value box. 
+
+:::
+
+::: {.column width="60%"}
+
+````{.r filename="index.qmd" code-line-numbers="|1|3-16|57-77"}
+# Fertility Rate {orientation="rows" scrolling="true"}
+
+## Row - 2023 Fertility Value Boxes
+
+```{{r}}
+#| label: Value Box 1
+#| content: valuebox
+#| title: "2023 Fertility Rate (Total*)"
+
+list(
+  icon = "person-standing-dress",
+  color = "#b67e54",
+  value = "A Value"
+)
+
+```
+
+```{{r}}
+#| label: Value Box 2
+#| content: valuebox
+#| title: "2023 Fertility Rate (Chinese)"
+
+list(
+  icon = "person-standing-dress",
+  color = "#efb9e7",
+  value = "A Value"
+)
+
+```
+
+```{{r}}
+#| label: Value Box 3
+#| content: valuebox
+#| title: "2023 Fertility Rate (Malays)"
+
+list(
+  icon = "person-standing-dress",
+  color = "#90ee90",
+  value = "A Value"
+)
+
+```
+
+```{{r}}
+#| label: Value Box 4
+#| content: valuebox
+#| title: "2023 Fertility Rate (Indians)"
+
+list(
+  icon = "person-standing-dress",
+  color = "#c5bce0",
+  value = "A Value"
+)
+
+```
+
+## Row - Fertility Rate Plot and Table
+
+### Column - Fertility Rate Plot
+
+```{{r}}
+#| label: Total Fertility Rate by Ethnicity Plot
+#| title: ""
+
+print("a plot")
+
+```
+
+### Column - Fertility Rate Table
+
+```{{r}}
+#| label: Total Fertility Rate by Ethnicity Table
+#| title: "𝄜 Total Fertility Rate Data"
+
+print("a table")
+
+```
+````
+
+:::
+
+::::
+
+![](images/card_fertility_rate_example.png){fig-alt="A dashboard with four value boxes in the first row and in the second row, one column reserved for the graph and the other column reserved for the table" fig-align="center"}
+
+## Tables and Plots for Fertility Rate Page
+
+::: panel-tabset
+
+### Table
+
+```{r}
+#| label: Total Fertility Rate by Ethnicity Table
+#| echo: false
+#| eval: true
+
+fertility_rate_data_year_for_table <- fertility_rate_data |>
+  tidyr::pivot_longer(
+    cols = -c("Ethnicity"),
+    names_to = c("Year"),
+    values_to = "Total_Fertility_Rate_Per_Female"
+  ) |>
+  dplyr::mutate(
+    Ethnicity = dplyr::case_when(
+      .data[["Ethnicity"]] == "Chinese (Per Female)" ~ "Chinese",
+      .data[["Ethnicity"]] == "Malays (Per Female)" ~ "Malays",
+      .data[["Ethnicity"]] == "Indians (Per Female)" ~ "Indians",
+      .data[["Ethnicity"]] == "All (Per Female)" ~ "Total*",
+    ),
+    Ethnicity = forcats::fct_relevel(
+      .data[["Ethnicity"]],
+      c("Chinese", "Malays", "Indians", "Total*")
+    )
+  ) |>
+  dplyr::filter(
+    .data[["Year"]] >= 1980
+  ) |>
+  dplyr::mutate(
+    Year = as.numeric(.data[["Year"]])
+  ) |>
+  dplyr::rename(
+    `Fertility Rate Per Female` = "Total_Fertility_Rate_Per_Female"
+  )
+
+data <- crosstalk::SharedData$new(fertility_rate_data_year_for_table)
+
+htmltools::div(
+  style = "display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;",
+  htmltools::div(
+    crosstalk::filter_select(
+      id = "Ethnicity",
+      label = "Ethnicity",
+      sharedData = data,
+      group = ~Ethnicity,
+      allLevels = TRUE),
+    crosstalk::filter_slider(
+      id = "Year",
+      label = "Year",
+      sharedData = data,
+      column = "Year"),
+    crosstalk::filter_slider(
+      id = "Fertility Rate Per Female",
+      label = "Fertility Rate Per Female",
+      sharedData = data,
+      column = "Fertility Rate Per Female",
+      width = "100%")
+  ),
+  htmltools::div(
+    style = "grid-column: span 3;",
+    htmltools::browsable(
+      htmltools::tagList(
+        reactable::reactable(data, minRows = 10, elementId = "tfr-table", paginationType = "jump"),
+        htmltools::tags$button("Download as CSV", onclick = "Reactable.downloadDataCSV('tfr-table')")
+      )
+    )
+  )
+)
+
+```
+
+### 👨‍💻 Source
+
+```{r}
+#| label: Source code for Total Fertility Rate by Ethnicity Table
+#| eval: false
+#| echo: true
+
+fertility_rate_data_year_for_table <- fertility_rate_data |>
+  tidyr::pivot_longer(
+    cols = -c("Ethnicity"),
+    names_to = c("Year"),
+    values_to = "Total_Fertility_Rate_Per_Female"
+  ) |>
+  dplyr::mutate(
+    Ethnicity = dplyr::case_when(
+      .data[["Ethnicity"]] == "Chinese (Per Female)" ~ "Chinese",
+      .data[["Ethnicity"]] == "Malays (Per Female)" ~ "Malays",
+      .data[["Ethnicity"]] == "Indians (Per Female)" ~ "Indians",
+      .data[["Ethnicity"]] == "All (Per Female)" ~ "Total*",
+    ),
+    Ethnicity = forcats::fct_relevel(
+      .data[["Ethnicity"]],
+      c("Chinese", "Malays", "Indians", "Total*")
+    )
+  ) |>
+  dplyr::filter(
+    .data[["Year"]] >= 1980
+  ) |>
+  dplyr::mutate(
+    Year = as.numeric(.data[["Year"]])
+  ) |>
+  dplyr::rename(
+    `Fertility Rate Per Female` = "Total_Fertility_Rate_Per_Female"
+  )
+
+data <- crosstalk::SharedData$new(fertility_rate_data_year_for_table)
+
+htmltools::div(
+  style = "display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;",
+  htmltools::div(
+    crosstalk::filter_select(
+      id = "Ethnicity",
+      label = "Ethnicity",
+      sharedData = data,
+      group = ~Ethnicity,
+      allLevels = TRUE),
+    crosstalk::filter_slider(
+      id = "Year",
+      label = "Year",
+      sharedData = data,
+      column = "Year"),
+    crosstalk::filter_slider(
+      id = "Fertility Rate Per Female",
+      label = "Fertility Rate Per Female",
+      sharedData = data,
+      column = "Fertility Rate Per Female",
+      width = "100%")
+  ),
+  htmltools::div(
+    style = "grid-column: span 3;",
+    htmltools::browsable(
+      htmltools::tagList(
+        reactable::reactable(data, minRows = 10, elementId = "tfr-table", paginationType = "jump"),
+        htmltools::tags$button("Download as CSV", onclick = "Reactable.downloadDataCSV('tfr-table')")
+      )
+    )
+  )
+)
+
+```
+
+:::
+
+## Tables and Plots for Fertility Rate Page
+
+::: panel-tabset
+
+### Plot
+
+```{r}
+#| label: Total Fertility Rate by Ethnicity Plot
+#| echo: false
+#| eval: true
+
+fertility_rate_data_year_for_plot <- fertility_rate_data |>
+  tidyr::pivot_longer(
+    cols = -c("Ethnicity"),
+    names_to = c("Year"),
+    values_to = "Total_Fertility_Rate_Per_Female"
+  ) |>
+  dplyr::mutate(
+    Ethnicity = dplyr::case_when(
+      .data[["Ethnicity"]] == "Chinese (Per Female)" ~ "Chinese",
+      .data[["Ethnicity"]] == "Malays (Per Female)" ~ "Malays",
+      .data[["Ethnicity"]] == "Indians (Per Female)" ~ "Indians",
+      .data[["Ethnicity"]] == "All (Per Female)" ~ "Total*",
+    ),
+    Ethnicity = forcats::fct_relevel(
+      .data[["Ethnicity"]],
+      c("Chinese", "Malays", "Indians", "Total*")
+    )
+  ) |>
+  dplyr::filter(
+    .data[["Year"]] >= 1980
+  )
+
+# For the hover text
+text_input <- glue::glue(
+   "{fertility_rate_data_year_for_plot[['Ethnicity']]}: {format(fertility_rate_data_year_for_plot[['Total_Fertility_Rate_Per_Female']], big.mark = ",", digits = 2)}"
+)
+
+plot <- plotly::plot_ly() |>
+  plotly::add_trace(
+    data = fertility_rate_data_year_for_plot,
+    x = fertility_rate_data_year_for_plot[["Year"]],
+    y = fertility_rate_data_year_for_plot[["Total_Fertility_Rate_Per_Female"]],
+    color = fertility_rate_data_year_for_plot[["Ethnicity"]],
+    colors = c(Chinese = "#efb9e7",
+               Malays = "#90ee90",
+               Indians = "#c5bce0",
+               `Total*` = "#b67e54"),
+    type = "scatter",
+    mode = "lines+markers",
+    marker = list(
+      size = 10,
+      line = list(color = "black", width = 1.5)
+    ),
+    linetype = fertility_rate_data_year_for_plot[["Ethnicity"]],
+    linetypes = c(Chinese = "solid",
+                  Malays = "solid",
+                  Indians = "solid",
+                  `Total*` = "solid"),
+    line = list(
+      width = 5
+    ),
+    name = fertility_rate_data_year_for_plot[["Ethnicity"]],
+    text = text_input,
+    hovertemplate = '%{text}<extra></extra>'
+  ) |>
+  plotly::layout(
+    title = list(text = "<b>Resident Total Fertility Rate by Ethnicity<b>" ,
+                 x = 0.5,
+                 y = 1,
+                 pad = list(l = 5, r = 5, b = 5, t = 20),
+                 xanchor = 'center',
+                 font = list(size = 20)),
+    xaxis = list(title = "",
+                 titlefont = list(size = 10),
+                 tickfont = list(size = 12),
+                 tickangle = -30,
+                 gridcolor = "#eff5ee",
+                 showgrid = TRUE,
+                 showticklabels = TRUE,
+                 tickcolor = "",
+                 ticks = "",
+                 zeroline = FALSE,
+                 rangeslider = list(thickness = 0.05),
+                 autorange = TRUE,
+                 automargin = TRUE,
+                 fixedrange = FALSE),
+    yaxis = list(title = "",
+                 titlefont = list(size = 10),
+                 tickfont = list(size = 12),
+                 gridcolor = "#c8cdc6",
+                 showgrid = TRUE,
+                 showline = FALSE,
+                 showticklabels = TRUE,
+                 tickcolor = "",
+                 ticks = "",
+                 zeroline = TRUE,
+                 range = list(0, 3),
+                 rangemode = "tozero",
+                 autorange = FALSE,
+                 automargin = TRUE,
+                 fixedrange = TRUE),
+    hovermode = "x unified",
+    legend = list(
+      title = list(text = "Ethnicity"),
+      orientation = 'h',
+      # Centered at x axis
+      xanchor = "center",
+      x = 0.5,
+      # Place on the top
+      y = 1,
+      font = list(size = 14)
+    ),
+    autosize = TRUE,
+    plot_bgcolor = "#eff5ee",
+    paper_bgcolor = "#eff5ee",
+    margin = list(l = 10, r = 10, b = 10, t = 50, pad = 10)
+  ) |>
+  plotly::add_annotations(
+    x = 0,
+    y = 1,
+    xref = "paper",
+    yref = "paper",
+    yanchor = "bottom",
+    text = "Total Fertility Rate\nPer Female",
+    showarrow = FALSE,
+    font = list(size = 15)
+  ) |>
+  plotly::add_annotations(
+    x = 0,
+    y = 0,
+    xref = "paper",
+    yref = "paper",
+    text = "*\tIncludes the ethnic group 'Others'",
+    showarrow = FALSE,
+    font = list(size = 10)
+  )
+
+plot
+
+```
+
+### 👨‍💻 Source
+
+```{r}
+#| label: Source Code for Total Fertility Rate by Ethnicity Plot
+#| echo: true
+#| eval: false
+
+fertility_rate_data_year_for_plot <- fertility_rate_data |>
+  tidyr::pivot_longer(
+    cols = -c("Ethnicity"),
+    names_to = c("Year"),
+    values_to = "Total_Fertility_Rate_Per_Female"
+  ) |>
+  dplyr::mutate(
+    Ethnicity = dplyr::case_when(
+      .data[["Ethnicity"]] == "Chinese (Per Female)" ~ "Chinese",
+      .data[["Ethnicity"]] == "Malays (Per Female)" ~ "Malays",
+      .data[["Ethnicity"]] == "Indians (Per Female)" ~ "Indians",
+      .data[["Ethnicity"]] == "All (Per Female)" ~ "Total*",
+    ),
+    Ethnicity = forcats::fct_relevel(
+      .data[["Ethnicity"]],
+      c("Chinese", "Malays", "Indians", "Total*")
+    )
+  ) |>
+  dplyr::filter(
+    .data[["Year"]] >= 1980
+  )
+
+# For the hover text
+text_input <- glue::glue(
+   "{fertility_rate_data_year_for_plot[['Ethnicity']]}: {format(fertility_rate_data_year_for_plot[['Total_Fertility_Rate_Per_Female']], big.mark = ",", digits = 2)}"
+)
+
+plot <- plotly::plot_ly() |>
+  plotly::add_trace(
+    data = fertility_rate_data_year_for_plot,
+    x = fertility_rate_data_year_for_plot[["Year"]],
+    y = fertility_rate_data_year_for_plot[["Total_Fertility_Rate_Per_Female"]],
+    color = fertility_rate_data_year_for_plot[["Ethnicity"]],
+    colors = c(Chinese = "#efb9e7",
+               Malays = "#90ee90",
+               Indians = "#c5bce0",
+               `Total*` = "#b67e54"),
+    type = "scatter",
+    mode = "lines+markers",
+    marker = list(
+      size = 10,
+      line = list(color = "black", width = 1.5)
+    ),
+    linetype = fertility_rate_data_year_for_plot[["Ethnicity"]],
+    linetypes = c(Chinese = "solid",
+                  Malays = "solid",
+                  Indians = "solid",
+                  `Total*` = "solid"),
+    line = list(
+      width = 5
+    ),
+    name = fertility_rate_data_year_for_plot[["Ethnicity"]],
+    text = text_input,
+    hovertemplate = '%{text}<extra></extra>'
+  ) |>
+  plotly::layout(
+    title = list(text = "<b>Resident Total Fertility Rate by Ethnicity<b>" ,
+                 x = 0.5,
+                 y = 1,
+                 pad = list(l = 5, r = 5, b = 5, t = 20),
+                 xanchor = 'center',
+                 font = list(size = 20)),
+    xaxis = list(title = "",
+                 titlefont = list(size = 10),
+                 tickfont = list(size = 12),
+                 tickangle = -30,
+                 gridcolor = "#eff5ee",
+                 showgrid = TRUE,
+                 showticklabels = TRUE,
+                 tickcolor = "",
+                 ticks = "",
+                 zeroline = FALSE,
+                 rangeslider = list(thickness = 0.05),
+                 autorange = TRUE,
+                 automargin = TRUE,
+                 fixedrange = FALSE),
+    yaxis = list(title = "",
+                 titlefont = list(size = 10),
+                 tickfont = list(size = 12),
+                 gridcolor = "#c8cdc6",
+                 showgrid = TRUE,
+                 showline = FALSE,
+                 showticklabels = TRUE,
+                 tickcolor = "",
+                 ticks = "",
+                 zeroline = TRUE,
+                 range = list(0, 3),
+                 rangemode = "tozero",
+                 autorange = FALSE,
+                 automargin = TRUE,
+                 fixedrange = TRUE),
+    hovermode = "x unified",
+    legend = list(
+      title = list(text = "Ethnicity"),
+      orientation = 'h',
+      # Centered at x axis
+      xanchor = "center",
+      x = 0.5,
+      # Place on the top
+      y = 1,
+      font = list(size = 14)
+    ),
+    autosize = TRUE,
+    plot_bgcolor = "#eff5ee",
+    paper_bgcolor = "#eff5ee",
+    margin = list(l = 10, r = 10, b = 10, t = 50, pad = 10)
+  ) |>
+  plotly::add_annotations(
+    x = 0,
+    y = 1,
+    xref = "paper",
+    yref = "paper",
+    yanchor = "bottom",
+    text = "Total Fertility Rate\nPer Female",
+    showarrow = FALSE,
+    font = list(size = 15)
+  ) |>
+  plotly::add_annotations(
+    x = 0,
+    y = 0,
+    xref = "paper",
+    yref = "paper",
+    text = "*\tIncludes the ethnic group 'Others'",
+    showarrow = FALSE,
+    font = list(size = 10)
+  )
+
+plot
+
+```
+
+:::
+
+## Layout and Cards for Live Birth
+
+The `{.tabset}` settings allow cards to have tabs to provide multiple views of data. 
+
+````{.r filename="index.qmd" code-line-numbers="|5-29|31-39"}
+# Live Birth {orientation="rows" scrolling="true"}
+
+## Row - Live Birth Plot and Table
+
+### Column - Live Birth Plot {.tabset}
+
+```{{r}}
+#| label: Total Live Birth by Ethnicity Plot
+#| title: "🙋🏻‍♀ 🙋🏻‍♂ All"
+
+print("a plot for all gender")
+
+```
+
+```{{r}}
+#| label: Total Male Live Birth by Ethnicity Plot
+#| title: "🙋🏻‍♂️ Male"
+
+print("a plot for male")
+
+```
+
+```{{r}}
+#| label: Total female Live Birth by Ethnicity Plot
+#| title: "🙋🏻‍♀️ Female"
+
+print("a plot for Female")
+
+```
+
+### Column - Live Birth Table
+
+```{{r}}
+#| label: Total Birth Data by Ethnicity Table
+#| title: "𝄜 Total Birth Data"
+
+print("a table")
+
+```
+````
+
+![](images/card_live_birth_example.png){fig-alt="A dashboard with one column reserved for the graph in a tabset and the other column reserved for the table" fig-align="center"}
+
+## Tables and Plots for Live Birth
+
+::: panel-tabset
+
+### Table
+
+```{r}
+#| label: Live Birth by Ethnicity Table
+#| echo: false
+#| eval: true
+
+birth_data_long <- birth_data |>
+  tidyr::pivot_longer(
+    cols = -c("Ethnicity", "Gender"),
+    names_to = c("Year", "Month"),
+    names_pattern = "(\\d{4})(\\w{3})",
+    values_to = "count"
+  ) |>
+  dplyr::mutate(
+    Ethnicity = forcats::fct_relevel(
+      .data[["Ethnicity"]],
+      c("Chinese", "Malays", "Indians", "Others")
+    )
+  )
+
+birth_data_both_gender <- birth_data_long |>
+  dplyr::summarise(
+    total_live_birth = sum(.data[["count"]], na.rm = TRUE),
+    .by = c("Ethnicity", "Year", "Gender")
+  ) |>
+  dplyr::filter(
+    .data[["Year"]] >= 1980 & .data[["Gender"]] == "All"
+  )
+
+birth_data_male <- birth_data_long |>
+  dplyr::summarise(
+    total_live_birth = sum(.data[["count"]], na.rm = TRUE),
+    .by = c("Ethnicity", "Year", "Gender")
+  ) |>
+  dplyr::filter(
+    .data[["Year"]] >= 1980 & .data[["Gender"]] == "Male"
+  )
+
+birth_data_female <- birth_data_long |>
+  dplyr::summarise(
+    total_live_birth = sum(.data[["count"]], na.rm = TRUE),
+    .by = c("Ethnicity", "Year", "Gender")
+  ) |>
+  dplyr::filter(
+    .data[["Year"]] >= 1980 & .data[["Gender"]] == "Female"
+  )
+
+birth_data_for_display <- dplyr::bind_rows(
+  birth_data_both_gender,
+  birth_data_male,
+  birth_data_female
+) |>
+  dplyr::mutate(
+    Year = as.numeric(.data[["Year"]])
+  ) |>
+  dplyr::rename(
+    `Total Live Birth` = "total_live_birth"
+  ) |>
+  dplyr::relocate(
+    "Gender",
+    .after = "Ethnicity"
+  )
+
+data <- crosstalk::SharedData$new(birth_data_for_display)
+
+htmltools::div(
+  style = "display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;",
+  htmltools::div(
+    crosstalk::filter_select(
+      id = "Ethnicity",
+      label = "Ethnicity",
+      sharedData = data,
+      group = ~Ethnicity,
+      allLevels = TRUE),
+    crosstalk::filter_checkbox(
+      id = "Gender",
+      label = "Gender",
+      sharedData = data,
+      group = ~Gender,
+      allLevels = TRUE),
+    crosstalk::filter_slider(
+      id = "Year",
+      label = "Year",
+      sharedData = data,
+      column = "Year"),
+    crosstalk::filter_slider(
+      id = "Total Live Birth",
+      label = "Total Live Birth",
+      sharedData = data,
+      column = "Total Live Birth",
+      width = "100%")
+  ),
+  htmltools::div(
+    style = "grid-column: span 3;",
+    htmltools::browsable(
+      htmltools::tagList(
+        reactable::reactable(data, minRows = 10, elementId = "birth-table", paginationType = "jump"),
+        htmltools::tags$button("Download as CSV", onclick = "Reactable.downloadDataCSV('birth-table')")
+      )
+    )
+  )
+)
+
+```
+
+### 👨‍💻 Source
+
+```{r}
+#| label: Source code for Live Birth by Ethnicity Table
+#| eval: false
+#| echo: true
+
+birth_data_long <- birth_data |>
+  tidyr::pivot_longer(
+    cols = -c("Ethnicity", "Gender"),
+    names_to = c("Year", "Month"),
+    names_pattern = "(\\d{4})(\\w{3})",
+    values_to = "count"
+  ) |>
+  dplyr::mutate(
+    Ethnicity = forcats::fct_relevel(
+      .data[["Ethnicity"]],
+      c("Chinese", "Malays", "Indians", "Others")
+    )
+  )
+
+birth_data_both_gender <- birth_data_long |>
+  dplyr::summarise(
+    total_live_birth = sum(.data[["count"]], na.rm = TRUE),
+    .by = c("Ethnicity", "Year", "Gender")
+  ) |>
+  dplyr::filter(
+    .data[["Year"]] >= 1980 & .data[["Gender"]] == "All"
+  )
+
+birth_data_male <- birth_data_long |>
+  dplyr::summarise(
+    total_live_birth = sum(.data[["count"]], na.rm = TRUE),
+    .by = c("Ethnicity", "Year", "Gender")
+  ) |>
+  dplyr::filter(
+    .data[["Year"]] >= 1980 & .data[["Gender"]] == "Male"
+  )
+
+birth_data_female <- birth_data_long |>
+  dplyr::summarise(
+    total_live_birth = sum(.data[["count"]], na.rm = TRUE),
+    .by = c("Ethnicity", "Year", "Gender")
+  ) |>
+  dplyr::filter(
+    .data[["Year"]] >= 1980 & .data[["Gender"]] == "Female"
+  )
+
+birth_data_for_display <- dplyr::bind_rows(
+  birth_data_both_gender,
+  birth_data_male,
+  birth_data_female
+) |>
+  dplyr::mutate(
+    Year = as.numeric(.data[["Year"]])
+  ) |>
+  dplyr::rename(
+    `Total Live Birth` = "total_live_birth"
+  ) |>
+  dplyr::relocate(
+    "Gender",
+    .after = "Ethnicity"
+  )
+
+data <- crosstalk::SharedData$new(birth_data_for_display)
+
+htmltools::div(
+  style = "display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;",
+  htmltools::div(
+    crosstalk::filter_select(
+      id = "Ethnicity",
+      label = "Ethnicity",
+      sharedData = data,
+      group = ~Ethnicity,
+      allLevels = TRUE),
+    crosstalk::filter_checkbox(
+      id = "Gender",
+      label = "Gender",
+      sharedData = data,
+      group = ~Gender,
+      allLevels = TRUE),
+    crosstalk::filter_slider(
+      id = "Year",
+      label = "Year",
+      sharedData = data,
+      column = "Year"),
+    crosstalk::filter_slider(
+      id = "Total Live Birth",
+      label = "Total Live Birth",
+      sharedData = data,
+      column = "Total Live Birth",
+      width = "100%")
+  ),
+  htmltools::div(
+    style = "grid-column: span 3;",
+    htmltools::browsable(
+      htmltools::tagList(
+        reactable::reactable(data, minRows = 10, elementId = "birth-table", paginationType = "jump"),
+        htmltools::tags$button("Download as CSV", onclick = "Reactable.downloadDataCSV('birth-table')")
+      )
+    )
+  )
+)
+
+```
+
+:::
+
+## Tables and Plots for Live Birth
+
+::: panel-tabset
+
+### Plots
+
+```{r}
+#| label: Live Birth by Ethnicity Plot
+#| echo: false
+#| eval: true
+
+birth_data_long <- birth_data |>
+  tidyr::pivot_longer(
+    cols = -c("Ethnicity", "Gender"),
+    names_to = c("Year", "Month"),
+    names_pattern = "(\\d{4})(\\w{3})",
+    values_to = "count"
+  ) |>
+  dplyr::mutate(
+    Ethnicity = forcats::fct_relevel(
+      .data[["Ethnicity"]],
+      c("Chinese", "Malays", "Indians", "Others")
+    )
+  )
+
+birth_data_both_gender <- birth_data_long |>
+  dplyr::summarise(
+    total_live_birth = sum(.data[["count"]], na.rm = TRUE),
+    .by = c("Ethnicity", "Year", "Gender")
+  ) |>
+  dplyr::filter(
+    .data[["Year"]] >= 1980 & .data[["Gender"]] == "All"
+  )
+
+# For the hover text
+text_input <- glue::glue(
+   "{birth_data_both_gender[['Ethnicity']]}: {birth_data_both_gender[['total_live_birth']]}"
+)
+
+plot <- plotly::plot_ly() |>
+  plotly::add_trace(
+    data = birth_data_both_gender,
+    x = birth_data_both_gender[["Year"]],
+    y = birth_data_both_gender[["total_live_birth"]],
+    color = birth_data_both_gender[["Ethnicity"]],
+    colors = c(Chinese = "#efb9e7",
+               Malays = "#90ee90",
+               Indians = "#c5bce0",
+               Others = "#b67e54"),
+    type = "scatter",
+    mode = "lines+markers",
+    marker = list(
+      size = 10,
+      line = list(color = "black", width = 1.5)
+    ),
+    line = list(
+      width = 5
+    ),
+    linetype = birth_data_both_gender[["Ethnicity"]],
+    linetypes = c(Chinese = "solid",
+                  Malays = "solid",
+                  Indians = "solid",
+                  Others = "solid"),
+    name = birth_data_both_gender[["Ethnicity"]],
+    text = text_input,
+    hovertemplate = '%{text}<extra></extra>'
+  ) |>
+  plotly::layout(
+    title = list(text = "<b>Resident Total Live Birth by Ethnicity<b>" ,
+                 x = 0.5,
+                 y = 1,
+                 pad = list(l = 5, r = 5, b = 5, t = 20),
+                 xanchor = 'center',
+                 font = list(size = 20)),
+    xaxis = list(title = "",
+                 titlefont = list(size = 10),
+                 tickfont = list(size = 12),
+                 tickangle = -30,
+                 gridcolor = "#eff5ee",
+                 showgrid = TRUE,
+                 showticklabels = TRUE,
+                 tickcolor = "",
+                 ticks = "",
+                 zeroline = FALSE,
+                 rangeslider = list(thickness = 0.05),
+                 automargin = TRUE,
+                 autorange = TRUE,
+                 fixedrange = FALSE),
+    yaxis = list(title = "",
+                 titlefont = list(size = 10),
+                 tickfont = list(size = 12),
+                 gridcolor = "#c8cdc6",
+                 showgrid = TRUE,
+                 showline = FALSE,
+                 showticklabels = TRUE,
+                 tickcolor = "",
+                 ticks = "",
+                 zeroline = TRUE,
+                 rangemode = "tozero",
+                 automargin = TRUE,
+                 autorange = TRUE,
+                 fixedrange = FALSE),
+    hovermode = "x unified",
+    legend = list(
+      title = list(text = "Ethnicity"),
+      orientation = 'h',
+      # Centered at x axis
+      xanchor = "center",
+      x = 0.5,
+      # Place on the top
+      y = 1,
+      font = list(size = 14)
+    ),
+    plot_bgcolor = "#eff5ee",
+    paper_bgcolor = "#eff5ee",
+    margin = list(l = 10, r = 10, b = 10, t = 50, pad = 10)
+  ) |>
+  plotly::add_annotations(
+    x = 0,
+    y = 1,
+    xref = "paper",
+    yref = "paper",
+    yanchor = "bottom",
+    text = "Total Live Birth",
+    showarrow = FALSE,
+    font = list(size = 15)
+  )
+
+plot
+```
+
+### 👨‍💻 Source
+
+```{r}
+#| label: Source code for Live Birth by Ethnicity Plot
+#| eval: false
+#| echo: true
+
+birth_data_long <- birth_data |>
+  tidyr::pivot_longer(
+    cols = -c("Ethnicity", "Gender"),
+    names_to = c("Year", "Month"),
+    names_pattern = "(\\d{4})(\\w{3})",
+    values_to = "count"
+  ) |>
+  dplyr::mutate(
+    Ethnicity = forcats::fct_relevel(
+      .data[["Ethnicity"]],
+      c("Chinese", "Malays", "Indians", "Others")
+    )
+  )
+
+birth_data_both_gender <- birth_data_long |>
+  dplyr::summarise(
+    total_live_birth = sum(.data[["count"]], na.rm = TRUE),
+    .by = c("Ethnicity", "Year", "Gender")
+  ) |>
+  dplyr::filter(
+    .data[["Year"]] >= 1980 & .data[["Gender"]] == "All"
+  )
+
+# For the hover text
+text_input <- glue::glue(
+   "{birth_data_both_gender[['Ethnicity']]}: {birth_data_both_gender[['total_live_birth']]}"
+)
+
+plot <- plotly::plot_ly() |>
+  plotly::add_trace(
+    data = birth_data_both_gender,
+    x = birth_data_both_gender[["Year"]],
+    y = birth_data_both_gender[["total_live_birth"]],
+    color = birth_data_both_gender[["Ethnicity"]],
+    colors = c(Chinese = "#efb9e7",
+               Malays = "#90ee90",
+               Indians = "#c5bce0",
+               Others = "#b67e54"),
+    type = "scatter",
+    mode = "lines+markers",
+    marker = list(
+      size = 10,
+      line = list(color = "black", width = 1.5)
+    ),
+    line = list(
+      width = 5
+    ),
+    linetype = birth_data_both_gender[["Ethnicity"]],
+    linetypes = c(Chinese = "solid",
+                  Malays = "solid",
+                  Indians = "solid",
+                  Others = "solid"),
+    name = birth_data_both_gender[["Ethnicity"]],
+    text = text_input,
+    hovertemplate = '%{text}<extra></extra>'
+  ) |>
+  plotly::layout(
+    title = list(text = "<b>Resident Total Live Birth by Ethnicity<b>" ,
+                 x = 0.5,
+                 y = 1,
+                 pad = list(l = 5, r = 5, b = 5, t = 20),
+                 xanchor = 'center',
+                 font = list(size = 20)),
+    xaxis = list(title = "",
+                 titlefont = list(size = 10),
+                 tickfont = list(size = 12),
+                 tickangle = -30,
+                 gridcolor = "#eff5ee",
+                 showgrid = TRUE,
+                 showticklabels = TRUE,
+                 tickcolor = "",
+                 ticks = "",
+                 zeroline = FALSE,
+                 rangeslider = list(thickness = 0.05),
+                 automargin = TRUE,
+                 autorange = TRUE,
+                 fixedrange = FALSE),
+    yaxis = list(title = "",
+                 titlefont = list(size = 10),
+                 tickfont = list(size = 12),
+                 gridcolor = "#c8cdc6",
+                 showgrid = TRUE,
+                 showline = FALSE,
+                 showticklabels = TRUE,
+                 tickcolor = "",
+                 ticks = "",
+                 zeroline = TRUE,
+                 rangemode = "tozero",
+                 automargin = TRUE,
+                 autorange = TRUE,
+                 fixedrange = FALSE),
+    hovermode = "x unified",
+    legend = list(
+      title = list(text = "Ethnicity"),
+      orientation = 'h',
+      # Centered at x axis
+      xanchor = "center",
+      x = 0.5,
+      # Place on the top
+      y = 1,
+      font = list(size = 14)
+    ),
+    plot_bgcolor = "#eff5ee",
+    paper_bgcolor = "#eff5ee",
+    margin = list(l = 10, r = 10, b = 10, t = 50, pad = 10)
+  ) |>
+  plotly::add_annotations(
+    x = 0,
+    y = 1,
+    xref = "paper",
+    yref = "paper",
+    yanchor = "bottom",
+    text = "Total Live Birth",
+    showarrow = FALSE,
+    font = list(size = 15)
+  )
+
+plot
+
+```
+
+:::
+
+## Current Output
+
+Deploy using [Github pages](https://pages.github.com/){target="_blank"}
+
+*  <https://jauntyjjs.github.io/fertility_dashboard/>{target="_blank"}
+
+![](images/card_fertility_rate_final.png){fig-alt="A preview of the completed dashboard" fig-align="center"}
+
+## Summary
+
+We have covered
+
+*  Navigation Bar and Pages
+
+*  Layout using Rows and Columns
+
+*  Cards and Tabsets
+
+Other features
+
+*  Sidebar and Toolbar
+
+*  Theming and customization
+
+*  Deployment
+
