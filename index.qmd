@@ -68,13 +68,20 @@ library(fontawesome) # Easily Work with 'Font Awesome' Icons Posit RPSM v0.5.2
 
 ```
 
+## whoami
+
+Research Officer from [National Heart Centre Singapore](https://www.nhcs.com.sg/){target="_blank"} who collects, cleans and harmonises data for a living.
+
+![](images/allison_horst2.png){fig-alt="Picture by Allison Horst about a data analyst facing a dataset in the form of a monster." fig-align="center"}
+
+[Taming the Data Beast from ["Cleaning Medical Data with R"](https://www.pipinghotdata.com/workshops/2023-06-06-cleaning-medical-data-with-r/){target="_blank"} workshop by Shannon Pileggi, Crystal Lewis and Petter Higgins presented at R/Medicine 2023. Illustrated by [Allison Horst](https://allisonhorst.com/){target="_blank"}]{style="font-size: 80%;"}.
+
 ## Quarto
 
-[Quarto®](https://quarto.org/){target="_blank"} is an open-source software that weaves narrative and programming code together to produce elegantly formatted output as documents (in HTML, Word, PDF), presentations, books, web pages, and more.
+[Quarto](https://quarto.org/){target="_blank"} is an open-source software that weaves narrative and programming code together to produce elegantly formatted output as documents (in HTML, Word, PDF), presentations, books, web pages, and more.
 
 ![](images/allison_horst.png){fig-alt="Picture by Allison Horst about Quarto turning programming code to documents." fig-align="center"}
-[Artwork](https://allisonhorst.com/){target="_blank"} by [@allison_horst](https://x.com/allison_horst){target="_blank"}.
-
+[[Artwork](https://allisonhorst.com/cetinkaya-rundel-lowndes-quarto-keynote){target="_blank"} from ["Hello, Quarto"](https://www.youtube.com/watch?v=p7Hxu4coDl8) keynote by Julia Lowndes and Mine Çetinkaya-Rundel, presented at RStudio Conference 2022. Illustrated by [Allison Horst](https://allisonhorst.com/){target="_blank"}]{style="font-size: 80%;"}.
 
 ## Quarto
 
@@ -86,9 +93,9 @@ library(fontawesome) # Easily Work with 'Font Awesome' Icons Posit RPSM v0.5.2
 
 ## Quarto Dashboards (Released in Quarto 1.4)
 
-* A simple way to quickly creating dashboards from Quarto scripts using R, Python, Julia, and Observable
+A simple way to quickly creating dashboards from Quarto scripts using R, Python, Julia, and Observable
 
-* Publish groups of visualizations, tables, text together. See examples in <https://quarto.org/docs/gallery/index.html#dashboards>{target="_blank"}
+Publish groups of visualizations, tables, text together. See examples in <https://quarto.org/docs/gallery/index.html#dashboards>{target="_blank"}
 
 ![](images/quarto_dashboard_example.png){fig-alt="A list of Quarto dashboard example." fig-align="center"}
 
@@ -136,7 +143,7 @@ Alternatively, it can be downloaded from <https://data.gov.sg/>{target="_blank"}
 
 ### Fertility Rate
 
-<https://data.gov.sg/datasets/d_e39eeaeadb571c0d0725ef1eec48d166/view>{target="_blank"}
+[<https://data.gov.sg/datasets/d_e39eeaeadb571c0d0725ef1eec48d166/view>{target="_blank"}]{style="font-size: 80%;"}
 
 ```{=html}
 <iframe width="1000" height="400" src="https://data.gov.sg/datasets/d_e39eeaeadb571c0d0725ef1eec48d166/view" title="Fertility Rate" ></iframe>
@@ -144,7 +151,7 @@ Alternatively, it can be downloaded from <https://data.gov.sg/>{target="_blank"}
 
 ### Live Birth
 
-<https://data.gov.sg/datasets/d_d05c760928eb5eaa58006d83462b834e/view>{target="_blank"}
+[<https://data.gov.sg/datasets/d_d05c760928eb5eaa58006d83462b834e/view>{target="_blank"}]{style="font-size: 80%;"}
 
 ```{=html}
 <iframe width="1000" height="400" src="https://data.gov.sg/datasets/d_d05c760928eb5eaa58006d83462b834e/view" title="Live Birth" ></iframe>
@@ -259,7 +266,7 @@ if (params$show_table && knitr::is_html_output()) {
 
 ## Motivation
 
-Can Quarto Dashboard create something similar to the [Fertility Dashboard](https://www.singstat.gov.sg/find-data/search-by-theme/population/births-and-fertility/visualising-data/fertility-dashboard){target="_blank"} from Department of Statistics Singapore.
+Can Quarto Dashboard create something similar to the [Fertility Dashboard](https://www.singstat.gov.sg/find-data/search-by-theme/population/births-and-fertility/visualising-data/fertility-dashboard){target="_blank"} from Department of Statistics Singapore ?
 
 ![](images/fertility_dashbaord_DOS.png){fig-alt="Fertility Dashboard from Department of Statistics Singapore." fig-align="center"}
 
@@ -1701,19 +1708,52 @@ Deploy using [Github pages](https://pages.github.com/){target="_blank"}
 
 ## Summary
 
-We have covered
+This introduction has covered
 
-*  Navigation Bar and Pages
+*  [Navigation Bar and Pages](https://quarto.org/docs/dashboards/layout.html#navigation){target="_blank"}
 
-*  Layout using Rows and Columns
+*  Card [Layout](https://quarto.org/docs/dashboards/layout.html#layout){target="_blank"} using Rows, Columns and [Tabsets](https://quarto.org/docs/dashboards/layout.html#tabsets){target="_blank"}
 
-*  Cards and Tabsets
+*  [Data display](https://quarto.org/docs/dashboards/data-display.html){target="_blank"} using plots, tables and value boxes
 
-Other features
+![](images/summary.png){fig-alt="Pictures of Quarto navigation bar, pages, layouts, cards and tabsets" fig-align="center"}
 
-*  Sidebar and Toolbar
 
-*  Theming and customization
+## Summary
 
-*  Deployment
+:::: {.columns}
 
+::: {.column width="40%"}
+
+Other features (not covered)
+
+*  Other forms of data display like [Shiny](https://quarto.org/docs/dashboards/interactivity/shiny-r.html){target="_blank"} component: [`bslib`](https://rstudio.github.io/bslib/articles/dashboards/){target="_blank"}
+
+*  [Sidebar and Toolbar](https://quarto.org/docs/dashboards/inputs.html){target="_blank"}
+
+*  [Theming and customization](https://quarto.org/docs/dashboards/theming.html){target="_blank"}
+
+*  [Deployment](https://quarto.org/docs/dashboards/deployment.html){target="_blank"}
+
+:::
+
+::: {.column width="60%"}
+
+![](images/summary2.png){fig-alt="Pictures of Quarto sidebar and toolbar" fig-align="center" width=80%}
+
+:::
+
+::::
+
+## Learn more
+
+* [Quarto Dashboard Documentation](https://quarto.org/docs/dashboards/){target="_blank"}
+* [Quarto Resources from Isabella Velásquez `r fontawesome::fa(name = "github", fill = "#273B8C")`](https://github.com/ivelasq/2024-07-18_quarto-dashboards){target="_blank"}
+* Quarto Dashboard Tutorial Videos from Mine Çetinkaya-Rundel
+  * [1: Hello, Dashboards! `r fontawesome::fa(name = "youtube", fill = "#273B8C")`](https://www.youtube.com/watch?v=HW7QbqI4fH0){target="_blank"}
+  * [2: Components `r fontawesome::fa(name = "youtube", fill = "#273B8C")`](https://www.youtube.com/watch?v=KdsQgwaY950){target="_blank"}
+  * [3: Theming and Styling `r fontawesome::fa(name = "youtube", fill = "#273B8C")`](https://www.youtube.com/watch?v=NigWSB-jG4Y){target="_blank"}
+* Spotify dashboard for 2024 Posit Table Contest submission using Quarto from Melissa Van Bussel
+  * [Walkthrough `r fontawesome::fa(name = "fas fa-arrow-up-right-from-square", fill = "#273B8C")`](https://melissavanbussel.github.io/spotify-dashboard/){target="_blank"}
+  * [Source Code `r fontawesome::fa(name = "github", fill = "#273B8C")`](https://github.com/melissavanbussel/spotify-dashboard){target="_blank"}
+  * [Dashboard `r fontawesome::fa(name = "list", fill = "#273B8C")`](https://melissavanbussel.github.io/spotify-dashboard/dashboard.html){target="_blank"}
