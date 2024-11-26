@@ -1,6 +1,6 @@
 ---
 title: Introduction to Quarto Dashboards 📊📈🎛️📶
-author: Jeremy Selva [`r fontawesome::fa(name = "linkedin", fill = "#273B8C")`](https://www.linkedin.com/in/jeremy-selva-085b9112a/){target="_blank"} <br> @JauntyJJS [`r fontawesome::fa(name = "github", fill = "#273B8C")`](https://github.com/JauntyJJS){target="_blank"} [`r fontawesome::fa(name = "fab fa-x-twitter", fill = "#273B8C")`](https://twitter.com/JauntyJJS){target="_blank"} <br> [*https://jeremy-selva.netlify.app* `r fontawesome::fa(name = "link", fill = "#273B8C")`](https://jeremy-selva.netlify.app/){target="_blank"} <br> For RUGS Meetup Nov 2024 `r fontawesome::fa(name = "r-project", fill = "#273B8C")`
+author: Jeremy Selva [`r fontawesome::fa(name = "linkedin", fill = "#0077ac")`](https://www.linkedin.com/in/jeremy-selva-085b9112a/){target="_blank"} <br> @JauntyJJS [`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS){target="_blank"} [`r fontawesome::fa(name = "fab fa-square-x-twitter", fill = "#000000")`](https://twitter.com/JauntyJJS){target="_blank"} [`r fontawesome::fa(name = "bluesky", fill = "#1084ff")`](https://bsky.app/profile/jauntyjjs.bsky.social){target="_blank"} [<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#5f53e7;overflow:visible;position:relative;"><path d="M433 179.1c0-97.2-63.7-125.7-63.7-125.7-62.5-28.7-228.6-28.4-290.5 0 0 0-63.7 28.5-63.7 125.7 0 115.7-6.6 259.4 105.6 289.1 40.5 10.7 75.3 13 103.3 11.4 50.8-2.8 79.3-18.1 79.3-18.1l-1.7-36.9s-36.3 11.4-77.1 10.1c-40.4-1.4-83-4.4-89.6-54a102.5 102.5 0 0 1 -.9-13.9c85.6 20.9 158.7 9.1 178.8 6.7 56.1-6.7 105-41.3 111.2-72.9 9.8-49.8 9-121.5 9-121.5zm-75.1 125.2h-46.6v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.3V197c0-58.5-64-56.6-64-6.9v114.2H90.2c0-122.1-5.2-147.9 18.4-175 25.9-28.9 79.8-30.8 103.8 6.1l11.6 19.5 11.6-19.5c24.1-37.1 78.1-34.8 103.8-6.1 23.7 27.3 18.4 53 18.4 175z"/></svg>](https://fosstodon.org/@JauntyJJS){target="_blank"} <br> [*https://jeremy-selva.netlify.app* `r fontawesome::fa(name = "link", fill = "#666666")`](https://jeremy-selva.netlify.app/){target="_blank"} <br> [For R User Group Singapore (RUGS) Meetup `r fontawesome::fa(name = "fab fa-meetup", fill = "#dd5466")`](https://www.meetup.com/r-user-group-sg/events/303934149){target="_blank"}
 date: 2024-11-29
 date-format: "D[<sup style='font-size:65%;font-style:italic;'>th</sup>] MMMM YYYY"
 format:
@@ -17,10 +17,31 @@ format:
     transition: fade
     background-transition: fade
     highlight-style: breeze
-    #logo: images/qr.png
+    logo: images/qr.png
     pointer:
       pointerSize: 24
       color: '#32cd32'
+    include-after-body: no_logo_at_title_slide.js
+    include-in-header: 
+      text: |
+        <meta name="github-repo" content="JauntyJJS/rugs_20241129" />
+        <meta name="twitter:title" content="Introduction to Quarto Dashboards" />
+        <meta name="twitter:description" content="Presentation for R User Group Singapore Meetup on 29 November 2024." />
+        <meta name="twitter:url" content="https://jauntyjjs.github.io/rugs_20241129" />
+        <meta name="twitter:image" content="https://raw.githubusercontent.com/JauntyJJS/rugs_20241129/main/share-card.png" />
+        <meta name="twitter:image:alt" content="Title slide of Introduction to Quarto Dashboards presented at R User Group Singapore Meetup on 29 November 2024." />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content="@JauntyJJS" />
+        <meta name="twitter:site" content="@JauntyJJS" />
+        <meta property="og:title" content="Introduction to Quarto Dashboards" />
+        <meta property="og:description" content="Presentation for R User Group Singapore Meetup on 29 November 2024." />
+        <meta property="og:url" content="https://jauntyjjs.github.io/rugs_20241129" />
+        <meta property="og:image" content="https://raw.githubusercontent.com/JauntyJJS/rugs_20241129/main/share-card.png" />
+        <meta property="og:image:alt" content="Title slide of Introduction to Quarto Dashboards presented at R User Group Singapore Meetup on 29 November 2024." />
+        <meta property="og:site_name" content="R User Group Singapore Meetup on 29 November 2024" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_UK" />
+        <meta property="article:author" content="Jeremy Selva" />
 revealjs-plugins:
   - pointer
 filters:
@@ -72,9 +93,16 @@ library(fontawesome) # Easily Work with 'Font Awesome' Icons Posit RPSM v0.5.2
 
 Research Officer from [National Heart Centre Singapore](https://www.nhcs.com.sg/){target="_blank"} who collects, cleans and harmonises data for a living.
 
-![](images/allison_horst2.png){fig-alt="Picture by Allison Horst about a data analyst facing a dataset in the form of a monster." fig-align="center"}
+![](images/allison_horst2.png){fig-alt="Picture by Allison Horst about a data analyst facing a dataset in the form of a monster." fig-align="center" width="70%"}
 
 [Taming the Data Beast from ["Cleaning Medical Data with R"](https://www.pipinghotdata.com/workshops/2023-06-06-cleaning-medical-data-with-r/){target="_blank"} workshop by Shannon Pileggi, Crystal Lewis and Petter Higgins presented at R/Medicine 2023. Illustrated by [Allison Horst](https://allisonhorst.com/){target="_blank"}]{style="font-size: 80%;"}.
+
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
 
 ## Quarto
 
@@ -82,6 +110,13 @@ Research Officer from [National Heart Centre Singapore](https://www.nhcs.com.sg/
 
 ![](images/allison_horst.png){fig-alt="Picture by Allison Horst about Quarto turning programming code to documents." fig-align="center"}
 [[Artwork](https://allisonhorst.com/cetinkaya-rundel-lowndes-quarto-keynote){target="_blank"} from ["Hello, Quarto"](https://www.youtube.com/watch?v=p7Hxu4coDl8) keynote by Julia Lowndes and Mine Çetinkaya-Rundel, presented at RStudio Conference 2022. Illustrated by [Allison Horst](https://allisonhorst.com/){target="_blank"}]{style="font-size: 80%;"}.
+
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
 
 ## Quarto
 
@@ -91,6 +126,13 @@ Research Officer from [National Heart Centre Singapore](https://www.nhcs.com.sg/
 <iframe width="1000" height="550" src="https://quarto.org/" title="Quarto Homepage" ></iframe>
 ```
 
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
+
 ## Quarto Dashboards (Released in Quarto 1.4)
 
 A simple way to quickly creating dashboards from Quarto scripts using R, Python, Julia, and Observable
@@ -99,12 +141,25 @@ Publish groups of visualizations, tables, text together. See examples in <https:
 
 ![](images/quarto_dashboard_example.png){fig-alt="A list of Quarto dashboard example." fig-align="center"}
 
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
 
 ## Dashboard Basics
 
 Dashboards are composed of **cards** of text, plot and tables in **pages**
 
 ![](images/cards_not_arranged.png){fig-alt="Cards (unaranged)." fig-align="center"}
+
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
 
 ## Dashboard Basics 
 
@@ -123,17 +178,38 @@ Dashboards are composed of **cards** of text, plot and tables in **pages** that 
 
 :::
 
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
+
 ## Motivation
 
 [CNA](https://www.channelnewsasia.com/singapore/singapore-total-fertility-rate-population-parents-children-4155616){target="_blank"} reported that Singapore's total fertility rate was below 1 for the first time.
 
 ![](images/cna_fertility.png){fig-alt="Channel News Asia news headline: Singapore's total fertility rate falls to historic low of 0.97" fig-align="center" width="60%"}
 
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
+
 ## Motivation
 
 Data is downloaded from [Department Of Statistics Singapore](https://www.singstat.gov.sg/find-data/search-by-theme/population/births-and-fertility/latest-data){target="_blank"}
 
 ![](images/website_to_get_data.png){fig-alt="Births and Fertility data from the Department Of Statistics Singapore website" fig-align="center"}
+
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
 
 ## Motivation
 
@@ -156,6 +232,13 @@ Alternatively, it can be downloaded from <https://data.gov.sg/>{target="_blank"}
 ```{=html}
 <iframe width="1000" height="400" src="https://data.gov.sg/datasets/d_d05c760928eb5eaa58006d83462b834e/view" title="Live Birth" ></iframe>
 ```
+
+:::
+
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -264,17 +347,38 @@ if (params$show_table && knitr::is_html_output()) {
 
 ::::
 
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
+
 ## Motivation
 
 Can Quarto Dashboard create something similar to the [Fertility Dashboard](https://www.singstat.gov.sg/find-data/search-by-theme/population/births-and-fertility/visualising-data/fertility-dashboard){target="_blank"} from Department of Statistics Singapore ?
 
 ![](images/fertility_dashbaord_DOS.png){fig-alt="Fertility Dashboard from Department of Statistics Singapore." fig-align="center"}
 
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
+
 ## Open A Quarto Document
 
 Create a Quarto document
 
 ![](images/create_a_quarto_doc_grouped.png){fig-alt="Steps to create a Quarto document" fig-align="center"}
+
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
 
 ## Open A Quarto Document
 
@@ -306,6 +410,13 @@ format:
 :::
 
 ::::
+
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
 
 ## Code Chunks
 
@@ -347,6 +458,13 @@ library(fontawesome) # Easily Work with 'Font Awesome' Icons Posit RPSM v0.5.2
 
 :::
 
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
+
 ## Pages
 
 The text of the level 1 headings `#{Page Title}` helps to create pages in the navigation bar.
@@ -370,6 +488,13 @@ format:
 
 ![](images/dashboard_with_pages.png){fig-alt="dashboard with pages but no content" fig-align="center"}
 
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
+
 ## Layout for About
 
 The `orientation="columns"` settings ensures cards are first laid out by columns and then by rows. Column space can be allocated using level 2 headings `## Column`
@@ -385,6 +510,13 @@ The `orientation="columns"` settings ensures cards are first laid out by columns
 ```
 
 ![](images/column_layout.png){fig-alt="column orientation layout" fig-align="center"}
+
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
 
 ## Cards for About
 
@@ -415,6 +547,13 @@ Your markdown text here
 :::
 
 ::::
+
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
 
 ## Cards for About
 
@@ -457,6 +596,13 @@ head(sessioninfo::platform_info())
 ### Output
 
 ![](images/card_about_r_platform_example.png){fig-alt="About page with a card titled: " fig-align="center"}
+:::
+
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
 :::
 
 ## Cards for About
@@ -641,6 +787,13 @@ r_platform_table |>
 
 :::
 
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
+
 ## Layout and Cards for Fertility Rate
 
 :::: {.columns}
@@ -740,6 +893,13 @@ print("a table")
 ::::
 
 ![](images/card_fertility_rate_example.png){fig-alt="A dashboard with four value boxes in the first row and in the second row, one column reserved for the graph and the other column reserved for the table" fig-align="center"}
+
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
 
 ## Tables and Plots for Fertility Rate Page
 
@@ -886,6 +1046,13 @@ htmltools::div(
 )
 
 ```
+
+:::
+
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -1171,6 +1338,13 @@ plot
 
 :::
 
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
+
 ## Layout and Cards for Live Birth
 
 The `{.tabset}` settings allow cards to have tabs to provide multiple views of data. 
@@ -1218,6 +1392,13 @@ print("a table")
 ````
 
 ![](images/card_live_birth_example.png){fig-alt="A dashboard with one column reserved for the graph in a tabset and the other column reserved for the table" fig-align="center"}
+
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
 
 ## Tables and Plots for Live Birth
 
@@ -1434,6 +1615,13 @@ htmltools::div(
 )
 
 ```
+
+:::
+
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -1698,6 +1886,13 @@ plot
 
 :::
 
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
+
 ## Current Output
 
 Deploy using [Github pages](https://pages.github.com/){target="_blank"}
@@ -1705,6 +1900,13 @@ Deploy using [Github pages](https://pages.github.com/){target="_blank"}
 *  <https://jauntyjjs.github.io/fertility_dashboard/>{target="_blank"}
 
 ![](images/card_fertility_rate_final.png){fig-alt="A preview of the completed dashboard" fig-align="center"}
+
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
 
 ## Summary
 
@@ -1717,6 +1919,13 @@ This introduction has covered
 *  [Data display](https://quarto.org/docs/dashboards/data-display.html){target="_blank"} using plots, tables and value boxes
 
 ![](images/summary.png){fig-alt="Pictures of Quarto navigation bar, pages, layouts, cards and tabsets" fig-align="center"}
+
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
 
 
 ## Summary
@@ -1745,6 +1954,13 @@ Other features (not covered)
 
 ::::
 
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
+
 ## Learn more
 
 * [Quarto Dashboard Documentation](https://quarto.org/docs/dashboards/){target="_blank"}
@@ -1757,3 +1973,10 @@ Other features (not covered)
   * [Walkthrough `r fontawesome::fa(name = "fas fa-arrow-up-right-from-square", fill = "#273B8C")`](https://melissavanbussel.github.io/spotify-dashboard/){target="_blank"}
   * [Source Code `r fontawesome::fa(name = "github", fill = "#273B8C")`](https://github.com/melissavanbussel/spotify-dashboard){target="_blank"}
   * [Dashboard `r fontawesome::fa(name = "list", fill = "#273B8C")`](https://melissavanbussel.github.io/spotify-dashboard/dashboard.html){target="_blank"}
+  
+::: footer
+
+[https://jauntyjjs.github.io/rugs_20241129
+`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+
+:::
