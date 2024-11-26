@@ -1,5 +1,4 @@
-# Introduction to Quarto Dashboards 📊📈🎛️📶 for RUGS Meetup 29 November
-2024
+# Introduction to Quarto Dashboards for RUGS Meetup on 29 November 2024
 
 
 Here are the [source code](https://github.com/JauntyJJS/rugs_20241129)

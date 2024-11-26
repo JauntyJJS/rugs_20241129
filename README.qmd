@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Quarto Dashboards 📊📈🎛️📶 for RUGS Meetup 29 November 2024"
+title: "Introduction to Quarto Dashboards for RUGS Meetup on 29 November 2024"
 format: gfm
 ---
 
