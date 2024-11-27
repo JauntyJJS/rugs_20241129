@@ -100,7 +100,7 @@ Research Officer from [National Heart Centre Singapore](https://www.nhcs.com.sg/
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
