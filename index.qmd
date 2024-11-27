@@ -389,7 +389,6 @@ Clear everything in file and type the following `yaml` header (surrounded by `--
 title: "SG Fertility Dashboard"
 format: 
   dashboard:
-    scrolling: true
     nav-buttons: [github]
     github: https://github.com/JauntyJJS/fertility_dashboard
 ---
@@ -474,7 +473,6 @@ The text of the level 1 headings `#{Page Title}` helps to create pages in the na
 title: "SG Fertility Dashboard"
 format: 
   dashboard:
-    scrolling: true
     nav-buttons: [github]
     github: https://github.com/JauntyJJS/fertility_dashboard
 ---
