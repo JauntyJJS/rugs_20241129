@@ -12,7 +12,7 @@ format:
     code-overflow: scroll
     controls: true
     progress: true
-    slide-number: true
+    #slide-number: true # slide number determined be no_logo_at_title_slide.js
     scrollable: true
     transition: fade
     background-transition: fade
@@ -55,8 +55,6 @@ params:
 #| include: false
 
 library(fontawesome)
-library(verbaliseR)
-
 library(knitr)
 library(yaml)
 library(rmarkdown)
@@ -114,7 +112,7 @@ Research Officer from [National Heart Centre Singapore](https://www.nhcs.com.sg/
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -129,7 +127,7 @@ Research Officer from [National Heart Centre Singapore](https://www.nhcs.com.sg/
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -144,7 +142,7 @@ Publish groups of visualizations, tables, text together. See examples in <https:
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -157,7 +155,7 @@ Dashboards are composed of **cards** of text, plot and tables in **pages**
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -181,7 +179,7 @@ Dashboards are composed of **cards** of text, plot and tables in **pages** that 
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -194,7 +192,7 @@ Dashboards are composed of **cards** of text, plot and tables in **pages** that 
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -207,7 +205,7 @@ Data is downloaded from [Department Of Statistics Singapore](https://www.singsta
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -238,7 +236,7 @@ Alternatively, it can be downloaded from <https://data.gov.sg/>{target="_blank"}
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -350,7 +348,7 @@ if (params$show_table && knitr::is_html_output()) {
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -363,7 +361,7 @@ Can Quarto Dashboard create something similar to the [Fertility Dashboard](https
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -376,7 +374,7 @@ Create a Quarto document
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -413,7 +411,7 @@ format:
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -460,7 +458,7 @@ library(fontawesome) # Easily Work with 'Font Awesome' Icons Posit RPSM v0.5.2
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -489,7 +487,7 @@ format:
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -512,7 +510,7 @@ The `orientation="columns"` settings ensures cards are first laid out by columns
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -549,7 +547,7 @@ Your markdown text here
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -557,7 +555,7 @@ Your markdown text here
 
 ::: panel-tabset
 
-### Code
+### 👨‍💻 Code
 
 To create cards that uses R codes, use ```` ```{r} ```` code chunks.
 
@@ -599,7 +597,7 @@ head(sessioninfo::platform_info())
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -607,7 +605,7 @@ head(sessioninfo::platform_info())
 
 ::: panel-tabset
 
-### Code
+### 👨‍💻 Code
 
 Here are the contents to create the About the dashboard chunks.
 
@@ -788,7 +786,7 @@ r_platform_table |>
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -895,7 +893,7 @@ print("a table")
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -903,7 +901,7 @@ print("a table")
 
 ::: panel-tabset
 
-### Table
+### 📰 Table
 
 ```{r}
 #| label: Total Fertility Rate by Ethnicity Table
@@ -1050,7 +1048,7 @@ htmltools::div(
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -1058,7 +1056,7 @@ htmltools::div(
 
 ::: panel-tabset
 
-### Plot
+### 📊 Plot
 
 ```{r}
 #| label: Total Fertility Rate by Ethnicity Plot
@@ -1339,7 +1337,7 @@ plot
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -1394,7 +1392,7 @@ print("a table")
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -1402,7 +1400,7 @@ print("a table")
 
 ::: panel-tabset
 
-### Table
+### 📰 Table
 
 ```{r}
 #| label: Live Birth by Ethnicity Table
@@ -1619,7 +1617,7 @@ htmltools::div(
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -1627,7 +1625,7 @@ htmltools::div(
 
 ::: panel-tabset
 
-### Plots
+### 📊 Plots
 
 ```{r}
 #| label: Live Birth by Ethnicity Plot
@@ -1887,7 +1885,7 @@ plot
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -1902,7 +1900,7 @@ Deploy using [Github pages](https://pages.github.com/){target="_blank"}
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -1921,7 +1919,7 @@ This introduction has covered
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
@@ -1955,26 +1953,26 @@ Other features (not covered)
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
 
 ## Learn more
 
-* [Quarto Dashboard Documentation](https://quarto.org/docs/dashboards/){target="_blank"}
-* [Quarto Resources from Isabella Velásquez `r fontawesome::fa(name = "github", fill = "#273B8C")`](https://github.com/ivelasq/2024-07-18_quarto-dashboards){target="_blank"}
+* [Quarto Dashboard Documentation `r fontawesome::fa(name = "book", fill = "#77acdf")`](https://quarto.org/docs/dashboards/){target="_blank"}
+* [Quarto Resources from Isabella Velásquez `r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/ivelasq/2024-07-18_quarto-dashboards){target="_blank"}
 * Quarto Dashboard Tutorial Videos from Mine Çetinkaya-Rundel
-  * [1: Hello, Dashboards! `r fontawesome::fa(name = "youtube", fill = "#273B8C")`](https://www.youtube.com/watch?v=HW7QbqI4fH0){target="_blank"}
-  * [2: Components `r fontawesome::fa(name = "youtube", fill = "#273B8C")`](https://www.youtube.com/watch?v=KdsQgwaY950){target="_blank"}
-  * [3: Theming and Styling `r fontawesome::fa(name = "youtube", fill = "#273B8C")`](https://www.youtube.com/watch?v=NigWSB-jG4Y){target="_blank"}
+  * [1: Hello, Dashboards! `r fontawesome::fa(name = "youtube", fill = "#ff0034")`](https://www.youtube.com/watch?v=HW7QbqI4fH0){target="_blank"}
+  * [2: Components `r fontawesome::fa(name = "youtube", fill = "#ff0034")`](https://www.youtube.com/watch?v=KdsQgwaY950){target="_blank"}
+  * [3: Theming and Styling `r fontawesome::fa(name = "youtube", fill = "#ff0034")`](https://www.youtube.com/watch?v=NigWSB-jG4Y){target="_blank"}
 * Spotify dashboard for 2024 Posit Table Contest submission using Quarto from Melissa Van Bussel
   * [Walkthrough `r fontawesome::fa(name = "fas fa-arrow-up-right-from-square", fill = "#273B8C")`](https://melissavanbussel.github.io/spotify-dashboard/){target="_blank"}
-  * [Source Code `r fontawesome::fa(name = "github", fill = "#273B8C")`](https://github.com/melissavanbussel/spotify-dashboard){target="_blank"}
-  * [Dashboard `r fontawesome::fa(name = "list", fill = "#273B8C")`](https://melissavanbussel.github.io/spotify-dashboard/dashboard.html){target="_blank"}
+  * [Source Code `r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/melissavanbussel/spotify-dashboard){target="_blank"}
+  * [Spotify Dashboard `r fontawesome::fa(name = "list", fill = "#17d75e")`](https://melissavanbussel.github.io/spotify-dashboard/dashboard.html){target="_blank"}
   
 ::: footer
 
 [https://jauntyjjs.github.io/rugs_20241129
-`r fontawesome::fa(name = "link")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
+`r fontawesome::fa(name = "link", fill = "#666666")`](https://jauntyjjs.github.io/rugs_20241129){target="_blank"}[`r fontawesome::fa(name = "github", fill = "#000000")`](https://github.com/JauntyJJS/rugs_20241129){target="_blank"}
 
 :::
